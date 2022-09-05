@@ -1,0 +1,25 @@
+<nav class="navbar navbar-light bg-primary">
+  <div class="container">
+      <h1 style="color: white">Angular-Crud-App</h1>
+
+      <a href="#" routerLink="/post/create/" class="btn btn-success">Add New Employee</a>
+<div class="container">
+  <div class="row" >
+      <div class="col-sm-3 m-4" *ngFor="let card of posts">
+<div class="card" style="width: 300px;">
+
+  <img [src]="card.imageUpload | urlSafe " class="card-img-top" alt="...">
+  <div class="card-body text-center">
+      <h5 class="card-title">Name</h5>
+      <p class="card-text">{{card.firstname}}</p>
+      <h5 class="card-title">Email</h5>
+      <p class="card-text">{{card.email}}</p>
+      <h5 class="card-title">Age</h5>
+      <p class="card-text">{{card.dob | ageCal}}</p>
+      <h5 class="card-title">Country</h5>
+      <p class="card-text">{{card.country}}</p>
+      <a href="#" class="btn btn-primary" [routerLink]="['/post/', card._id, 'edit']">Edit Profile</a>
+  </div>
+</div>
+      </div>
+  </div></div>

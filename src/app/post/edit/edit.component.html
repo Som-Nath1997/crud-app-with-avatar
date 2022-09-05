@@ -1,0 +1,62 @@
+<nav class="navbar navbar-light bg-success">
+    <div class="container">
+        <h1 style="color: white">Update Employee Details</h1>
+        <div *ngIf="message" style="position: absolute;
+        transform: translateX(50%); right: 50%; " class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Updated!</strong> Employee Updated Succesfully.
+            <button (click)="remove()" type="button" class="btn-close" data-bs-dismiss="alert"
+                aria-label="Close"></button>
+        </div>
+
+        <a href="#" routerLink="/post/index" class="btn btn-info">Back</a>
+
+    </div>
+</nav>
+<div class="container-fluid image  ">
+    <div class="container  p-4 newimg">
+        <form [formGroup]="form" (ngSubmit)="submit()">
+
+            <div class="form-group">
+                <label class="m-2" style="font-size: 1.4rem; font-weight:600;" for="firstname">First Name<span>
+                        *</span></label>
+                <input formControlName="firstname" id="firstname" type="text" class="form-control"
+                    [ngClass]="{ 'is-invalid': (f.firstname.dirty || f.firstname.touched) && f.firstname.invalid }">
+                <div class="invalid-feedback" *ngIf="(f.firstname.dirty || f.firstname.touched) && f.firstname.invalid"
+                    class="invalid-feedback">
+                    <div *ngIf="f.firstname.errors">First Name is required.</div>
+                </div>
+            </div>
+            <div class="form-group">
+              <label>Date of Birth</label>
+              <input type="date" formControlName="dob" class="form-control" />
+          </div>
+            <div class="form-group">
+                <label class="m-2" style="font-size: 1.4rem; font-weight:600;" for="email">Email<span> *</span></label>
+                <input formControlName="email" id="email" type="text" class="form-control"
+                    [ngClass]="{ 'is-invalid': (f.email.dirty || f.email.touched) && f.email.invalid }">
+                <div class="invalid-feedback" *ngIf="(f.email.dirty || f.email.touched) && f.email.invalid"
+                    class="invalid-feedback">
+                    <div *ngIf="f.email.errors">email is required.</div>
+                </div>
+            </div>
+            <div class="form-group">
+              <label>country</label>
+            <select class="form-control" name="country" formControlName="country" id="country" >
+              <option value="" disabled selected>Select Country</option>
+              <option  *ngFor="let country of products" value="{{country.name}}" ngDefaultControl>
+                {{country.name}}
+              </option>
+            </select>
+            </div>
+            <div class="form-group">
+              <label>Update Your Avatar</label>
+            <div class="form-control">
+              <input type="file" name="imageUpload" id="=imageUpload"  (change)="upload($event.target)">
+
+              </div>
+            </div>
+            <img [src]="imageUrl">
+                <button class="btn btn-success mt-2" type="submit" [disabled]="!form.valid">Update Employee</button>
+        </form>
+    </div>
+</div>
